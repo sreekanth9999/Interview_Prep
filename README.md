@@ -18,4 +18,5 @@ Transformer :
     4. Nice article with math : https://medium.com/data-science/tracing-the-transformer-in-diagrams-95dbeb68160c
 
 SQL Practice:
+
     1. https://www.interviewmaster.ai/
