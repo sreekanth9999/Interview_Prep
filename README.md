@@ -20,3 +20,12 @@ Transformer :
 SQL Practice:
 
     1. https://www.interviewmaster.ai/
+
+
+Good Resource for SQL and others :
+- datalemur.com
+- sqlbolt.com
+- https://lnkd.in/gwfF3jkk
+- https://lnkd.in/g6phPUUk
+- https://lnkd.in/gfqwGT8f
+- https://lnkd.in/gHsZvMbP
