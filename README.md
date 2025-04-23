@@ -20,6 +20,7 @@ Transformer :
 SQL Practice:
 
     1. https://www.interviewmaster.ai/
+    2. https://sql-case-study-ecommerce-mwvj4o4.gamma.site/
 
 
 Good Resource for SQL and others :
