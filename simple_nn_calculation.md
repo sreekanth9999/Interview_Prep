@@ -155,4 +155,45 @@ You now understand how gradients are **calculated and used to update weights**, 
 
 ---
 
-Would you like a companion visual (e.g., flow chart or diagram) to go with this explanation for your post?
+[![Back Propagation in Neural Network: Machine Learning Algorithm](https://tse1.mm.bing.net/th?id=OIP.GOmyJGzqoxcPYnEpXoU_kAHaD2\&pid=Api)](https://www.guru99.com/backpropogation-neural-network.html)
+
+Absolutely! To deepen your understanding of backpropagation and gradient descent, here are some excellent resources that provide step-by-step explanations and examples:
+
+---
+
+### 🔗 Recommended Resources
+
+1. **A Step-by-Step Backpropagation Example**
+   This tutorial offers a detailed walkthrough of backpropagation using a simple neural network example. It covers the forward pass, loss calculation, and the backward pass with clear explanations.
+   🔗 [Matt Mazur's Tutorial](https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/)
+
+2. **Backpropagation in Neural Networks – GeeksforGeeks**
+   This article explains the backpropagation algorithm and provides a Python implementation for the XOR problem, making it easier to grasp the concepts through code.
+   🔗 [GeeksforGeeks Article](https://www.geeksforgeeks.org/backpropagation-in-neural-network/)
+
+3. **Backpropagation Step by Step – HMKCODE**
+   This resource breaks down the backpropagation process into colorful, detailed steps, making it visually appealing and easier to understand.
+   🔗 [HMKCODE Tutorial](https://hmkcode.com/ai/backpropagation-step-by-step/)
+
+4. **Mastering Backpropagation: A Comprehensive Guide for Neural Networks**
+   This comprehensive guide dives into the essentials of backpropagation in neural networks with a hands-on approach, including training and evaluating a model for an image classification use case.
+   🔗 [DataCamp Tutorial](https://www.datacamp.com/tutorial/mastering-backpropagation)
+
+---
+
+### 🧠 Visual Aids
+
+To further enhance your understanding, here are some visual representations:
+
+* **Backpropagation Neural Network Diagram**
+  ![Backpropagation Neural Network](https://www.guru99.com/images/1/032618_0613_BackPropaga1.png)
+  *Source: Guru99*
+
+* **Gradient Descent Visualization**
+  ![Gradient Descent](https://vitalflux.com/wp-content/uploads/2019/10/gradient-descent-3d.png)
+  *Source: Analytics Yogi*
+
+* **Local vs. Global Minima**
+  ![Local vs Global Minima](https://vitalflux.com/wp-content/uploads/2019/10/local-global-minima.png)
+  *Source: Analytics Yogi*
+
