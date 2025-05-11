@@ -181,19 +181,3 @@ Absolutely! To deepen your understanding of backpropagation and gradient descent
 
 ---
 
-### 🧠 Visual Aids
-
-To further enhance your understanding, here are some visual representations:
-
-* **Backpropagation Neural Network Diagram**
-  ![Backpropagation Neural Network](https://www.guru99.com/images/1/032618_0613_BackPropaga1.png)
-  *Source: Guru99*
-
-* **Gradient Descent Visualization**
-  ![Gradient Descent](https://vitalflux.com/wp-content/uploads/2019/10/gradient-descent-3d.png)
-  *Source: Analytics Yogi*
-
-* **Local vs. Global Minima**
-  ![Local vs Global Minima](https://vitalflux.com/wp-content/uploads/2019/10/local-global-minima.png)
-  *Source: Analytics Yogi*
-
