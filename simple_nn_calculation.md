@@ -25,7 +25,6 @@ We use a 2-layer network with:
 
 $$
 z_1 = x \cdot w_1 = 1.0 \cdot 0.5 = 0.5 \\
-
 a_1 = \text{ReLU}(z_1) = 0.5
 $$
 
@@ -33,7 +32,6 @@ $$
 
 $$
 z_2 = a_1 \cdot w_2 = 0.5 \cdot 0.5 = 0.25 \\
-
 a_2 = \text{Sigmoid}(z_2) = \frac{1}{1 + e^{-0.25}} \approx 0.562
 $$
 
