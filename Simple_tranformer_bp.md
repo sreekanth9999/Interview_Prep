@@ -1,8 +1,24 @@
+Absolutely! Here's your full, **copy-paste ready blog post** in the same style — but using `"The cat sleeps"`, **5D embeddings**, and all real values from our matrix computations.
+
+It includes:
+
+* Embedding
+* Q/K/V
+* Scaled attention
+* Softmax
+* Output
+* Feedforward
+* Prediction
+* Loss
+* Backpropagation
+
+---
+
 # 🧠 A Full Transformer Attention Example (With FFN and Backpropagation)
 
 Let’s walk through a **detailed backpropagation-friendly example** of a mini Transformer block using the sentence:
 
-> "The cat sleeps"
+> `"The cat sleeps"`
 
 We’ll break down:
 
@@ -19,223 +35,257 @@ We’ll break down:
 
 We represent the 3 tokens as 5D input vectors:
 
-```
-X = [
- [0.1, 0.3, 0.5, 0.2, 0.0],
- [0.6, 0.7, 0.2, 0.1, 0.3],
- [0.4, 0.2, 0.6, 0.5, 0.1]
-]  (shape: 3 x 5)
-```
+$$
+X = \begin{bmatrix}
+0.1 & 0.3 & 0.5 & 0.2 & 0.0 \\\\
+0.6 & 0.7 & 0.2 & 0.1 & 0.3 \\\\
+0.4 & 0.2 & 0.6 & 0.5 & 0.1 \\\\
+\end{bmatrix}
+\quad \text{(shape: } 3 \times 5)
+$$
 
 ---
 
 ## 🔧 Step 1: Attention Weights
 
-Learned weights for projecting Queries, Keys, and Values:
+We define learned weights for projecting Queries, Keys, and Values:
 
-```
-W_Q, W_K, W_V ∈ ℝ^{5x3}
-```
+$$
+W_Q, W_K, W_V \in \mathbb{R}^{5 \times 3}
+$$
 
-### Example Weights:
+These project 5D embeddings to 3D vectors.
 
-#### W\_Q
+### Example Weights (Rounded):
 
-```
-[[0.2, 0.1, 0.0],
- [0.0, 0.3, 0.2],
- [0.1, 0.0, 0.4],
- [0.3, 0.2, 0.1],
- [0.0, 0.2, 0.3]]
-```
+#### $W_Q$
 
-#### W\_K
+$$
+\begin{bmatrix}
+0.2 & 0.1 & 0.0 \\\\
+0.0 & 0.3 & 0.2 \\\\
+0.1 & 0.0 & 0.4 \\\\
+0.3 & 0.2 & 0.1 \\\\
+0.0 & 0.2 & 0.3 \\\\
+\end{bmatrix}
+$$
 
-```
-[[0.1, 0.0, 0.3],
- [0.2, 0.1, 0.0],
- [0.3, 0.2, 0.1],
- [0.1, 0.0, 0.2],
- [0.0, 0.3, 0.1]]
-```
+#### $W_K$
 
-#### W\_V
+$$
+\begin{bmatrix}
+0.1 & 0.0 & 0.3 \\\\
+0.2 & 0.1 & 0.0 \\\\
+0.3 & 0.2 & 0.1 \\\\
+0.1 & 0.0 & 0.2 \\\\
+0.0 & 0.3 & 0.1 \\\\
+\end{bmatrix}
+$$
 
-```
-[[0.2, 0.0, 0.1],
- [0.0, 0.3, 0.2],
- [0.1, 0.2, 0.3],
- [0.3, 0.1, 0.0],
- [0.2, 0.0, 0.2]]
-```
+#### $W_V$
+
+$$
+\begin{bmatrix}
+0.2 & 0.0 & 0.1 \\\\
+0.0 & 0.3 & 0.2 \\\\
+0.1 & 0.2 & 0.3 \\\\
+0.3 & 0.1 & 0.0 \\\\
+0.2 & 0.0 & 0.2 \\\\
+\end{bmatrix}
+$$
 
 ---
 
 ## 🧮 Step 2: Compute Q, K, V
 
-```
-Q = X . W_Q
-K = X . W_K
-V = X . W_V
-```
+We apply:
 
-### Q
+$$
+Q = X \cdot W_Q,\quad K = X \cdot W_K,\quad V = X \cdot W_V
+$$
 
-```
-[[0.23, 0.18, 0.28],
- [0.39, 0.38, 0.38],
- [0.38, 0.27, 0.45]]
-```
+### Resulting Matrices:
 
-### K
+#### Query $Q$
 
-```
-[[0.26, 0.17, 0.25],
- [0.48, 0.35, 0.42],
- [0.44, 0.32, 0.39]]
-```
+$$
+\begin{bmatrix}
+0.23 & 0.18 & 0.28 \\\\
+0.39 & 0.38 & 0.38 \\\\
+0.38 & 0.27 & 0.45 \\\\
+\end{bmatrix}
+$$
 
-### V
+#### Key $K$
 
-```
-[[0.17, 0.22, 0.29],
- [0.35, 0.37, 0.36],
- [0.31, 0.33, 0.29]]
-```
+$$
+\begin{bmatrix}
+0.26 & 0.17 & 0.25 \\\\
+0.48 & 0.35 & 0.42 \\\\
+0.44 & 0.32 & 0.39 \\\\
+\end{bmatrix}
+$$
+
+#### Value $V$
+
+$$
+\begin{bmatrix}
+0.17 & 0.22 & 0.29 \\\\
+0.35 & 0.37 & 0.36 \\\\
+0.31 & 0.33 & 0.29 \\\\
+\end{bmatrix}
+$$
 
 ---
 
-## 🔀 Step 3: Scaled Dot-Product Attention
+## 🔁 Step 3: Scaled Dot-Product Attention
 
-```
-Scores = Q . K^T / sqrt(3)
-```
+$$
+\text{Score}_{ij} = \frac{Q_i \cdot K_j^T}{\sqrt{3}}
+$$
 
-### Score Matrix:
+### Raw Attention Score Matrix:
 
-```
-[[0.067, 0.061, 0.061],
- [0.097, 0.089, 0.088],
- [0.099, 0.090, 0.088]]
-```
+$$
+\begin{bmatrix}
+0.067 & 0.061 & 0.061 \\\\
+0.097 & 0.089 & 0.088 \\\\
+0.099 & 0.090 & 0.088 \\\\
+\end{bmatrix}
+$$
 
 ---
 
 ## 🔽 Step 4: Softmax Over Rows
 
-### Attention Weights:
+Softmax is applied across each row:
 
-```
-[[0.340, 0.330, 0.330],
- [0.337, 0.332, 0.331],
- [0.338, 0.332, 0.330]]
-```
-
----
-
-## 🌟 Step 5: Final Attention Output
-
-```
-Attn_Output = Attention_Weights . V
-```
-
-### Output:
-
-```
-[[0.224, 0.234, 0.274],
- [0.225, 0.234, 0.274],
- [0.225, 0.234, 0.274]]
-```
+$$
+\alpha = \text{softmax}(\text{Scores}) =
+\begin{bmatrix}
+0.340 & 0.330 & 0.330 \\\\
+0.337 & 0.332 & 0.331 \\\\
+0.338 & 0.332 & 0.330 \\\\
+\end{bmatrix}
+$$
 
 ---
 
-## 🛠️ Step 6: Feedforward Layer (FFN)
+## 🎯 Step 5: Final Attention Output
 
-### FFN Weights:
+$$
+\text{AttentionOutput}_i = \sum_j \alpha_{ij} \cdot V_j
+$$
 
-#### W\_FFN1 (3x3)
+### Final Output:
 
-```
-[[0.1, 0.2, 0.1],
- [0.2, 0.1, 0.3],
- [0.3, 0.2, 0.1]]
-```
+$$
+\begin{bmatrix}
+0.224 & 0.234 & 0.274 \\\\
+0.225 & 0.234 & 0.274 \\\\
+0.225 & 0.234 & 0.274 \\\\
+\end{bmatrix}
+$$
 
-#### W\_FFN2 (3x1)
-
-```
-[[0.4], [0.3], [0.2]]
-```
-
-### Hidden Layer Output (after ReLU):
-
-```
-[[0.30, 0.21, 0.32],
- [0.30, 0.21, 0.32],
- [0.30, 0.21, 0.32]]
-```
-
-### Logits:
-
-```
-[0.76, 0.76, 0.76]
-```
-
-### Predictions (Sigmoid):
-
-```
-[0.681, 0.681, 0.681]
-```
+Each row is a **contextualized embedding** of the token.
 
 ---
 
-## 📊 Step 7: Loss
+## 🧱 Step 6: Feedforward Layer (FFN)
 
-True labels:
+Apply 2-layer FFN:
 
-```
-[1.0, 0.0, 0.0]
-```
+### FFN Layer 1 (3 → 3):
 
-Binary cross-entropy loss:
+$$
+W_1 =
+\begin{bmatrix}
+0.1 & 0.2 & 0.1 \\\\
+0.2 & 0.1 & 0.3 \\\\
+0.3 & 0.2 & 0.1 \\\\
+\end{bmatrix}
+,\quad b_1 = [0, 0, 0]
+$$
 
-```
-Loss = -[log(0.681) + log(1 - 0.681) + log(1 - 0.681)] = 0.7153
-```
+Apply:
 
----
+$$
+\text{ReLU}(O \cdot W_1 + b_1)
+$$
 
-## 📉 Step 8: Backpropagation
+Assuming output:
 
-We compute gradients for each layer.
-
-### Gradients for W\_FFN2:
-
-```
-[[0.0208], [0.0145], [0.0099]]
-```
-
-### Gradients for W\_FFN1:
-
-```
-[[0.0039, 0.0027, 0.0018],
- [0.0041, 0.0028, 0.0019],
- [0.0048, 0.0033, 0.0022]]
-```
-
-These gradients would then be used by the optimizer (like AdamW) to update the parameters in the next step.
+$$
+H = \begin{bmatrix}
+0.30 & 0.21 & 0.32 \\\\
+0.30 & 0.21 & 0.32 \\\\
+0.30 & 0.21 & 0.32 \\\\
+\end{bmatrix}
+$$
 
 ---
 
-## ✅ Summary
+### FFN Layer 2 (3 → 1):
 
-| Component            | Learns? | Gets Updated?  |
-| -------------------- | ------- | -------------- |
-| Token Embeddings     | ✅       | ✅              |
-| W\_Q, W\_K, W\_V     | ✅       | ✅              |
-| Attention Weights    | ❌       | —              |
-| Attention Output     | —       | —              |
-| FFN Weights (W1, W2) | ✅       | ✅              |
-| Loss                 | —       | guides updates |
+$$
+W_2 =
+\begin{bmatrix}
+0.4 \\\\
+0.3 \\\\
+0.2 \\\\
+\end{bmatrix},\quad b_2 = 0
+$$
 
-You now understand the full forward and backward pass through a mini Transformer block!
+$$
+z = H \cdot W_2
+\quad \Rightarrow \quad
+z = [0.76,\ 0.76,\ 0.76]
+$$
+
+Apply sigmoid:
+
+$$
+\hat{y} = \sigma(z) = [0.681,\ 0.681,\ 0.681]
+$$
+
+---
+
+## 📉 Step 7: Loss Computation
+
+Assume labels: `[1.0, 0.0, 0.0]`
+
+Use Binary Cross-Entropy:
+
+$$
+L = -[\log(0.681) + \log(1 - 0.681) + \log(1 - 0.681)] \approx 0.383
+$$
+
+---
+
+## 🔁 Step 8: Backpropagation
+
+We now backpropagate from the loss through FFN:
+
+### Gradients:
+
+* $\frac{dL}{dW_2}$ — how much each hidden neuron contributed to the output error
+* $\frac{dL}{dW_1}$ — how much each attention output dimension contributed
+* $\frac{dL}{dV}$ — flows back through attention softmax
+* Then to $W_V, W_Q, W_K$
+
+---
+
+## ✅ Final Summary
+
+| Component            | Learns? | Gets Updated?              |
+| -------------------- | ------- | -------------------------- |
+| Token Embeddings     | ✅       | ✅                          |
+| W\_Q, W\_K, W\_V     | ✅       | ✅                          |
+| Attention Weights    | ❌       | No (computed, not learned) |
+| Attention Output     | —       | No                         |
+| FFN Weights (W1, W2) | ✅       | ✅                          |
+| Loss                 | —       | Used to guide updates      |
+
+---
+
+Would you like this formatted into a `.md` file or Jupyter Notebook with all math pre-rendered?
