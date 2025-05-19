@@ -31,6 +31,6 @@ Good Resource for SQL and others :
 - https://lnkd.in/gfqwGT8f
 - https://lnkd.in/gHsZvMbP
 
-Interesting blogs :
+Interesting blogs:
 KV Caching Article : https://medium.com/data-science-collective/kv-caching-by-hand-092240557ccf
 Asyncs & MP/MT : https://medium.com/data-science/deep-dive-into-multithreading-multiprocessing-and-asyncio-94fdbe0c91f0
