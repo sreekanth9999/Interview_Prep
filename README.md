@@ -34,3 +34,6 @@ Good Resource for SQL and others :
 Interesting blogs:
 - KV Caching Article : https://medium.com/data-science-collective/kv-caching-by-hand-092240557ccf
 - Asyncs & MP/MT : https://medium.com/data-science/deep-dive-into-multithreading-multiprocessing-and-asyncio-94fdbe0c91f0
+
+interview Questions :
+- https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers
