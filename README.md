@@ -37,3 +37,6 @@ Interesting blogs:
 
 interview Questions :
 - https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers
+
+Pytorch:
+- https://github.com/niconielsen32/pytorch-tutorials/tree/main/01_pytorch_basics
