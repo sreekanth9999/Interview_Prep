@@ -43,5 +43,5 @@ Pytorch:
 
 
 Statistical Tests:
-<img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/a38806b5-d022-4e4a-b15a-e46e95186156" />
+- <img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/a38806b5-d022-4e4a-b15a-e46e95186156" />
 
