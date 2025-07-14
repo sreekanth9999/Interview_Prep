@@ -40,3 +40,8 @@ interview Questions :
 
 Pytorch:
 - https://github.com/niconielsen32/pytorch-tutorials/tree/main/01_pytorch_basics
+
+
+Statistical Tests:
+<img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/a38806b5-d022-4e4a-b15a-e46e95186156" />
+
