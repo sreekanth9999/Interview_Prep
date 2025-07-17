@@ -11,6 +11,7 @@ Learn
 LINKS:
 
 ML algorithms from scratch :
+
     1. https://medium.com/@pragyashukla2580/the-complete-ml-coding-manual-everything-you-need-nothing-you-dont-0fe7bcdad08e 
 
 Transformer :
