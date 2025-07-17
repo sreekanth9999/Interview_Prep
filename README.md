@@ -10,6 +10,9 @@ Learn
 
 LINKS:
 
+ML algorithms from scratch :
+    1. https://medium.com/@pragyashukla2580/the-complete-ml-coding-manual-everything-you-need-nothing-you-dont-0fe7bcdad08e 
+
 Transformer :
 
     1. Transformers : https://goyalpramod.github.io/blogs/Transformers_laid_out/#coding-the-transformer
@@ -44,4 +47,5 @@ Pytorch:
 
 Statistical Tests:
 - <img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/a38806b5-d022-4e4a-b15a-e46e95186156" />
+
 
